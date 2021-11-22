@@ -7,8 +7,12 @@ import subprocess
 output = subprocess.check_output("python -m serial.tools.list_ports", shell=True) # sending command to terminal 
 output = output.decode('utf-8') # the output is of type b'somestring' This removes that
 output = output.splitlines() # so we can access the COM part 
-port =  output[0]
 
+# if on Linux add these lines and remove line 
+#     temp = output[0].split()
+#     port = temp[0]
+
+port =  output[0]
 data = open("Input.txt", "w")
 ser = serial.Serial(port, 115200, timeout=30)  # open serial port
 print("Serial Port opened on : " + ser.name)
